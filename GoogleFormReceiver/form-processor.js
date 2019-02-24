@@ -15,12 +15,11 @@ class FormProcessor {
         // add the table props to the entity
         results.PartitionKey = this.partitionKey;
         results.RowKey = id;
-
-        return new Promise(resolve => {
-            tableService.insertOrReplaceEntity(this.entityKey, tblData, (error, result, response) => {
+        return new Promise((resolve, rej) => {
+            tableService.insertOrReplaceEntity(this.entityKey, results, (error, result, response) => {
                 if (error)
-                    context.log(error);
-                    
+                    rej(error);
+
                 resolve();
             });
         });

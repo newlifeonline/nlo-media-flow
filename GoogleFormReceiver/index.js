@@ -17,10 +17,26 @@ module.exports = async function (context, req) {
             }
         });
 
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: ''
-        };
+        if (processPromises.length > 0) {
+            Promise
+                .all(processPromises)
+                .catch(err => {
+                    context.log(err);
+                    context.res = {
+                        status: 500
+                    };
+                })
+                .then(d => {
+                    context.res = {
+                        status: 201
+                    };
+                });
+        } else {
+            context.res = {
+                status: 400, /* Defaults to 200 */
+                body: 'No data'
+            };
+        }        
     }
     else {
         context.res = {

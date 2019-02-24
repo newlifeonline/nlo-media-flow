@@ -15,7 +15,7 @@ class FormUtil {
             googleImageFileId: imageId,
             googleAudioFileId: audioId,
             googleVideoFileId: videoId,
-            tags: formData.tags
+            tagsCSV: formData.tags.join(',')
         };
     }
 }
