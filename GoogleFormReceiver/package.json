@@ -9,7 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "azure-storage": "^2.10.0",
+        "azure-storage": "^2.10.2",
         "durable-functions": "^1.1.4"
     }
 }
