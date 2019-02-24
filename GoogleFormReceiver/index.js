@@ -1,4 +1,5 @@
-
+const df = require('durable-functions');
+const FormUtil = require('./form-util');
 
 module.exports = async function (context, req) {
     const FormProcessor = require('./form-processor');
@@ -8,11 +9,14 @@ module.exports = async function (context, req) {
         let connStr = process.env['NLO_STORAGE'];
         const processor = new FormProcessor(connStr);
         let processPromises = [];
+        let task = {};
 
         req.body.embeds.forEach(form => {
             if (form.formData) {
-                let id = form.id;
-                let fd = form.formData;
+                const id = form.id;
+                const fd = FormUtil.parse(form.formData);
+                const vimeoResult = yield context.df.callActivity('VimeoNotifier', fd);
+                fd.vimeoUri = vimeoResult;
                 processPromises.push(processor.process(id, fd));
             }
         });

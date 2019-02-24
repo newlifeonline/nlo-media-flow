@@ -10,13 +10,12 @@ class FormProcessor {
 
     process(id, formData) {
         const tableService = azure.createTableService(this.connStr);
-        const results = FormUtil.parse(formData);
 
         // add the table props to the entity
-        results.PartitionKey = this.partitionKey;
-        results.RowKey = id;
+        formData.PartitionKey = this.partitionKey;
+        formData.RowKey = id;
         return new Promise((resolve, rej) => {
-            tableService.insertOrReplaceEntity(this.entityKey, results, (error, result, response) => {
+            tableService.insertOrReplaceEntity(this.entityKey, formData, (error, result, response) => {
                 if (error)
                     rej(error);
 
