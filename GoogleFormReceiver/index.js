@@ -3,28 +3,19 @@ const FormUtil = require('./form-util');
 
 module.exports = async function (context, req) {
     if (req.body && req.body.embeds) {
-        let results = [];
+        const form = req.body.embeds[0];
+        const id = form.id;
+        const fd = FormUtil.parse(form.formData);
+        const submission = {
+            id: id,
+            entity: fd
+        }
+        const client = df.getClient(context);
+        const instanceId = await client.startNew('Orchestrator',  undefined, submission);
 
-        req.body.embeds.forEach(form => {
-            if (form.formData) {
-                const id = form.id;
-                const fd = FormUtil.parse(form.formData);
-                const vimeoResult = yield context.df.callActivity('VimeoNotifier', fd);
-                fd.vimeoUri = vimeoResult;
-                const entity = {
-                    id: id,
-                    entity: fd
-                }
-                const tableResult = yield context.df.callActivity('SaveMediaSubmission', entity);
+        context.log(`Started orchestration with ID = '${instanceId}'.`);
 
-                results.push(entity);
-            }
-        });
-
-        context.res = {
-            status: 201,
-            body: entity
-        };       
+        return client.createCheckStatusResponse(context.bindingData.req, instanceId);   
     }
     else {
         context.res = {
