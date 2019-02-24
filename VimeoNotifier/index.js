@@ -1,4 +1,4 @@
-const require = require('request');
+const request = require('request');
 
 module.exports = async function (context) {
     const input = context.bindings.input;
