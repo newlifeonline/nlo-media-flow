@@ -1,0 +1,25 @@
+{
+  "name": "nlo-media-flow",
+  "version": "1.0.0",
+  "description": "Used for uploading audio, video, and images for NLO series",
+  "main": "index.js",
+  "dependencies": {
+    "azure-storage": "^2.10.2",
+    "durable-functions": "^1.1.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newlifeonline/nlo-media-flow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newlifeonline/nlo-media-flow/issues"
+  },
+  "homepage": "https://github.com/newlifeonline/nlo-media-flow#readme"
+}
