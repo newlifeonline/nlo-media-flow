@@ -1,0 +1,16 @@
+{
+    "embeds": [{
+        "title": "**New form submission** — NLO Video",
+        "type": "rich",
+        "id": "12353333",
+        "formData": {
+            "title": "t",
+            "description": "t",
+            "event_date": "2019-12-31",
+            "image_file": ["1b2m0V6PUTnjw-a0Z18VK9AAGDf2g6Mgf"],
+            "audio_file": ["1louGueogfsKjMOeb-4wiQZC41H7aJp49"],
+            "video_file": ["1efHkrC8v3-8DrrsJbi7zCIHT0ov4wd6q"],
+            "tags": ["Current"]
+        }
+    }]
+}

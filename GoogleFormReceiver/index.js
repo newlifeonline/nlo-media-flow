@@ -1,16 +1,31 @@
+
+
 module.exports = async function (context, req) {
+    const FormProcessor = require('./form-processor');
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    if (req.query.name || (req.body && req.body.name)) {
+    if (req.body && req.body.embeds) {
+        let connStr = process.env['NLO_STORAGE'];
+        const processor = new FormProcessor(connStr);
+        let processPromises = [];
+
+        req.body.embeds.forEach(form => {
+            if (form.formData) {
+                let id = form.id;
+                let fd = form.formData;
+                processPromises.push(processor.process(id, fd));
+            }
+        });
+
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Hello " + (req.query.name || req.body.name)
+            body: ''
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: 'Please pass a request body'
         };
     }
 };
