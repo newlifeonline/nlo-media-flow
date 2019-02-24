@@ -2,14 +2,8 @@ const df = require('durable-functions');
 const FormUtil = require('./form-util');
 
 module.exports = async function (context, req) {
-    const FormProcessor = require('./form-processor');
-    context.log('JavaScript HTTP trigger function processed a request.');
-
     if (req.body && req.body.embeds) {
-        let connStr = process.env['NLO_STORAGE'];
-        const processor = new FormProcessor(connStr);
-        let processPromises = [];
-        let task = {};
+        let results = [];
 
         req.body.embeds.forEach(form => {
             if (form.formData) {
@@ -17,30 +11,20 @@ module.exports = async function (context, req) {
                 const fd = FormUtil.parse(form.formData);
                 const vimeoResult = yield context.df.callActivity('VimeoNotifier', fd);
                 fd.vimeoUri = vimeoResult;
-                processPromises.push(processor.process(id, fd));
+                const entity = {
+                    id: id,
+                    entity: fd
+                }
+                const tableResult = yield context.df.callActivity('SaveMediaSubmission', entity);
+
+                results.push(entity);
             }
         });
 
-        if (processPromises.length > 0) {
-            Promise
-                .all(processPromises)
-                .catch(err => {
-                    context.log(err);
-                    context.res = {
-                        status: 500
-                    };
-                })
-                .then(d => {
-                    context.res = {
-                        status: 201
-                    };
-                });
-        } else {
-            context.res = {
-                status: 400, /* Defaults to 200 */
-                body: 'No data'
-            };
-        }        
+        context.res = {
+            status: 201,
+            body: entity
+        };       
     }
     else {
         context.res = {
