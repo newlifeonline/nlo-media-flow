@@ -32,7 +32,7 @@ module.exports = async function (context) {
     request.post(options, (error, response, body) => {
         if (error) {
             context.log(error);
-            context.done(err);
+            context.done(error);
         } else {
             const videoUri = body.uri;
             context.log(videoUri);
