@@ -29,14 +29,16 @@ module.exports = async function (context) {
         },
         json: vimeoUpload
     }
-    request.post(options, (error, response, body) => {
-        if (error) {
-            context.log(error);
-            context.done(error);
-        } else {
-            const videoUri = body.uri;
-            context.log(videoUri);
-            context.done(null, videoUri);
-        }
+    return await new Promise((resolver, reject) => {
+        request.post(options, (error, response, body) => {
+            if (error) {
+                context.log(error);
+                reject(error);
+            } else {
+                const videoUri = body.uri;
+                context.log(videoUri);
+                resolve(videoUri);
+            }
+        });
     });
 };
