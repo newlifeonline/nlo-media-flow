@@ -29,7 +29,7 @@ module.exports = async function (context) {
         },
         json: vimeoUpload
     }
-    return await new Promise((resolver, reject) => {
+    return await new Promise((resolve, reject) => {
         request.post(options, (error, response, body) => {
             if (error) {
                 context.log(error);
