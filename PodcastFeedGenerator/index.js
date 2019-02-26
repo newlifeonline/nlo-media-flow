@@ -1,3 +1,5 @@
+const PodcastFeed = require('./podcast-feed');
+
 module.exports = async function (context, req) {
     const m = context.bindings.inputTable
         .sort((a, b) => {
@@ -14,4 +16,5 @@ module.exports = async function (context, req) {
         'body': xml,
         'isRaw': true
     };
+    context.done();
 };
