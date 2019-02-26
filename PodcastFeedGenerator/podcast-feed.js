@@ -11,11 +11,11 @@ class PodcastFeed {
 
     static getFeedHeader() {
         return {
-            title: data.title,
-            description: data.desciption,
-            feedUrl: data.feedUrl,
-            categories: data.categories,
-            pubDate: data.pubDate,
+            title: 'New Life Weekend Messages | Saxonburg',
+            description: 'Lead Pastor Chris Marshall',
+            feedUrl: '',
+            categories: 'Christianity',
+            pubDate: new Date(),
             language: 'en-GB',
             copyright: 'All content copyright New Life Christian Ministries Inc.',
             itunesAuthor: 'New Life',
