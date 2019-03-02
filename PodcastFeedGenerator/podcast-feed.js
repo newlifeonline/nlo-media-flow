@@ -34,7 +34,7 @@ class PodcastFeed {
             enclosure: {
                 url: ''
             },
-            date: e.eventDate,
+            date: m.eventDate,
             guid: '',
             itunesDuration: 0,
             itunesExplicit: false,
