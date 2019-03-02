@@ -1,9 +1,10 @@
 const Podcast = require('podcast');
 class PodcastFeed {
     static generateXML(mediaItems) {
-        let feed = new Podcast(getFeedHeader());
+        let feed = new Podcast(PodcastFeed.getFeedHeader());
         mediaItems.forEach(m => {
-            feed.addItem(m);
+            const item = PodcastFeed.getFeedItem(m)
+            feed.addItem(item);
         });
 
         return feed.buildXML();
