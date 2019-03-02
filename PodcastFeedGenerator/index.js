@@ -1,19 +1,12 @@
 const PodcastFeed = require('./podcast-feed');
 
-module.exports = async function (context, req) {
+module.exports = async function (context) {
     const m = context.bindings.inputTable
         .sort((a, b) => {
             return b - a;
         });
 
     const xml = PodcastFeed.generateXML(m);
-
-    context.res = {
-        'headers': {
-            'Content-Type': 'text/xml'
-        },
-        'body': xml,
-        'isRaw': true
-    };
-    context.done();
+    console.log(xml);
+    context.bindings.outputBlob = xml;
 };

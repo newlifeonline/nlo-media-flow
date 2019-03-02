@@ -9,5 +9,7 @@ module.exports = df.orchestrator(function* (context) {
 
     yield context.df.callActivity('SaveMediaSubmission', submission);
     yield context.df.callActivity('TransferGoogleFileToBlob', submission.entity.googleAudioFileId);
+    yield context.df.callActivity('PodcastFeedGenerator');
+
     return context.instanceId;
 });
