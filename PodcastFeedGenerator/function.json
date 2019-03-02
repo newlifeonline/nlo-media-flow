@@ -18,8 +18,7 @@
     {
       "type": "table",
       "name": "inputTable",
-      "tableName": "channels",
-      "partitionKey": "nlo",
+      "tableName": "MediaFormSubmissions",
       "take": "100",
       "connection": "NLO_STORAGE",
       "direction": "in"
