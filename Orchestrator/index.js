@@ -8,5 +8,6 @@ module.exports = df.orchestrator(function* (context) {
     submission.entity.vimeoId = vimeoResult.videoId;
 
     yield context.df.callActivity('SaveMediaSubmission', submission);
+    yield context.df.callActivity('TransferGoogleFileToBlob', submission.entity.googleAudioFileId);
     return context.instanceId;
 });
