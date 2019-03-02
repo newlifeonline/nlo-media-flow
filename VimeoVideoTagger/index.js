@@ -1,4 +1,7 @@
 const request = require('request');
+const appInsights = require("applicationinsights");
+appInsights.setup();
+const client = appInsights.defaultClient;
 
 module.exports = async function (context) {
     const input = context.bindings.input;
@@ -19,7 +22,7 @@ module.exports = async function (context) {
     return await new Promise((resolve, reject) => {
         request.put(url, options, (error, response, body) => {
             if (error) {
-                context.log(error);
+                client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
                 reject(error);
             } else {
                 resolve();

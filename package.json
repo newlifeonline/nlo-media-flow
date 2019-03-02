@@ -4,6 +4,7 @@
   "description": "Used for uploading audio, video, and images for NLO series",
   "main": "index.js",
   "dependencies": {
+    "applicationinsights": "^1.2.0",
     "azure-storage": "^2.10.2",
     "durable-functions": "^1.1.4",
     "podcast": "^1.1.0",

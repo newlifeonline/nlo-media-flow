@@ -3,7 +3,7 @@ const df = require('durable-functions');
 module.exports = df.orchestrator(function* (context) {
     const submission = context.df.getInput();
     const vimeoResult = yield context.df.callActivity('VimeoNotifier', submission.entity);
-
+    
     submission.entity.vimeoUri = vimeoResult.videoUri;
     submission.entity.vimeoId = vimeoResult.videoId;
 
