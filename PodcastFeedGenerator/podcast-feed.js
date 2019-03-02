@@ -7,7 +7,7 @@ class PodcastFeed {
             feed.addItem(item);
         });
 
-        return feed.buildXML();
+        return feed.buildXml('\t');
     }
 
     static getFeedHeader() {
@@ -15,7 +15,7 @@ class PodcastFeed {
             title: 'New Life Weekend Messages | Saxonburg',
             description: 'Lead Pastor Chris Marshall',
             feedUrl: '',
-            categories: 'Christianity',
+            categories: ['Christianity'],
             pubDate: new Date(),
             language: 'en-GB',
             copyright: 'All content copyright New Life Christian Ministries Inc.',
