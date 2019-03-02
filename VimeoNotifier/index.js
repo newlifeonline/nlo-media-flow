@@ -36,7 +36,7 @@ module.exports = async function (context) {
                 reject(error);
             } else {
                 const videoUri = response.body.uri;
-                const videoId = videoUri.split('/')[1];
+                const videoId = videoUri.split('/')[2];
                 resolve({ videoUri: videoUri, videoId: videoId });
             }
         });
