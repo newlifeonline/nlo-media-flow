@@ -1,4 +1,5 @@
 const Podcast = require('podcast');
+const baseBlobUrl = process.env["BASE_BLOB_URL"];
 class PodcastFeed {
     static generateXML(mediaItems) {
         let feed = new Podcast(PodcastFeed.getFeedHeader());
@@ -28,14 +29,15 @@ class PodcastFeed {
     }
 
     static getFeedItem(m) {
+        const id = m.googleAudioFileId;
         return {
             title: m.title,
             description: m.description,
             enclosure: {
-                url: ''
+                url: `${baseBlobUrl}/podcasts/${id}.mp3`
             },
             date: m.eventDate,
-            guid: '',
+            guid: id,
             itunesDuration: 0,
             itunesExplicit: false,
             itunesKeywords: ['New Life', 'New Life Christian Ministries', 'Saxonburg', 'Church', 'Bible', 'God', 'Preaching', 'Teaching', 'Bible Teaching', 'Bible Preaching', 'Chris Marshall', 'Brad French', 'Mark Lutz', 'New', 'Life', 'Jesus', 'God', 'Holy Spirit', 'Christianity', 'Christian', 'Faith']
