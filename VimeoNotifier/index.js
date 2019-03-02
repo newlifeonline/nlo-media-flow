@@ -36,8 +36,8 @@ module.exports = async function (context) {
                 reject(error);
             } else {
                 const videoUri = body.uri;
-                context.log(videoUri);
-                resolve(videoUri);
+                const videoId = videoUri.split('/')[1];
+                resolve({ videoUri: videoUri, videoId: videoId });
             }
         });
     });
