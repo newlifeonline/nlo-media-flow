@@ -30,12 +30,12 @@ module.exports = async function (context) {
         json: vimeoUpload
     }
     return await new Promise((resolve, reject) => {
-        request.post(options, (error, response, body) => {
+        request.post(options, (error, response) => {
             if (error) {
                 context.log(error);
                 reject(error);
             } else {
-                const videoUri = body.uri;
+                const videoUri = response.body.uri;
                 const videoId = videoUri.split('/')[1];
                 resolve({ videoUri: videoUri, videoId: videoId });
             }

@@ -9,7 +9,9 @@ module.exports = df.orchestrator(function* (context) {
 
     const tags = submission.entity.tagsCSV.split(',');
     tags.forEach(t => {
-        yield context.df.callActivity('VimeoVideoTagger', { videoId: vimeoResult.videoId, tag: t });
+        const input = { videoId: vimeoResult.videoId, tag: t };
+        context.log(input);
+        yield context.df.callActivity('VimeoVideoTagger', input);
     });
 
     yield context.df.callActivity('SaveMediaSubmission', submission);
