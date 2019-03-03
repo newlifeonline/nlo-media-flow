@@ -14,6 +14,7 @@ class FormUtil {
             eventDate: formData.event_date,
             googleImageFileId: imageId,
             googleAudioFileId: audioId,
+            audioId: audioId,
             googleVideoFileId: videoId,
             tagsCSV: formData.tags.join(',')
         };
