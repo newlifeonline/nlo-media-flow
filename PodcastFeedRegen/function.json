@@ -1,0 +1,34 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "table",
+      "name": "inputTable",
+      "tableName": "MediaFormSubmissions",
+      "take": "100",
+      "connection": "NLO_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "podcasts/feed.xml",
+      "connection": "NLO_STORAGE",
+      "direction": "out"
+    }
+  ]
+}
