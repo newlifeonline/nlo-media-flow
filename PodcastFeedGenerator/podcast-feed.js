@@ -4,8 +4,10 @@ class PodcastFeed {
     static generateXML(mediaItems) {
         let feed = new Podcast(PodcastFeed.getFeedHeader());
         mediaItems.forEach(m => {
-            const item = PodcastFeed.getFeedItem(m)
-            feed.addItem(item);
+            if (m.googleAudioFileId) {
+                const item = PodcastFeed.getFeedItem(m)
+                feed.addItem(item);
+            }
         });
 
         return feed.buildXml('\t');
@@ -40,7 +42,7 @@ class PodcastFeed {
             },
             date: m.eventDate,
             guid: id,
-            itunesDuration: 40,
+            itunesDuration: m.audioDuration ? m.audioDuration : 1800, // default to 30 mins
             itunesExplicit: false,
             itunesKeywords: ['New Life', 'New Life Christian Ministries', 'Saxonburg', 'Church', 'Bible', 'God', 'Preaching', 'Teaching', 'Bible Teaching', 'Bible Preaching', 'Chris Marshall', 'Brad French', 'Mark Lutz', 'New', 'Life', 'Jesus', 'God', 'Holy Spirit', 'Christianity', 'Christian', 'Faith']
         };
