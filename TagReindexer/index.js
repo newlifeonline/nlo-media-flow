@@ -12,10 +12,10 @@ module.exports = async function (context, req) {
     const masterTagList = [];
 
     const submissions = submissionsTable.map(s => {
-        const tags = s.entity.tagsCSV.split(',');
-        const vimeoId = s.entity.vimeoId || null;
-        const audioUrl =  s.entity.audioId ? 
-            `${baseBlobUrl}/podcasts/${s.entity.audioId}.mp3` : null;
+        const tags = s.tagsCSV.split(',');
+        const vimeoId = s.vimeoId || null;
+        const audioUrl =  s.audioId ? 
+            `${baseBlobUrl}/podcasts/${s.audioId}.mp3` : null;
 
         tags.forEach(tag => {
             if (masterTagList.find(t => t !== tag))
@@ -24,9 +24,9 @@ module.exports = async function (context, req) {
 
         return {
             id: s.id,
-            title: s.entity.title,
-            description: s.entity.description,
-            eventDate: s.entity.eventDate,
+            title: s.title,
+            description: s.description,
+            eventDate: s.eventDate,
             audioUrl: audioUrl,
             vimeoId: vimeoId,
             tags: tags
