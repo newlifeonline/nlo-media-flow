@@ -11,6 +11,8 @@ class FormUtil {
                             formData.video_file[0] : '';
         let videoImageId = formData.video_image.length > 0 ? 
                             formData.video_image[0] : '';
+        let vimeoId = formData.vimeo_id && formData.vimeo_id > 0 ? formData.vimeo_id : '';
+
         return {
             title: formData.title,
             description: formData.description,
@@ -20,7 +22,8 @@ class FormUtil {
             audioId: audioId,
             googleVideoFileId: videoId,
             googleVideoImageFileId: videoImageId,
-            tagsCSV: formData.tags.join(',')
+            tagsCSV: formData.tags.join(','),
+            vimeoId: vimeoId
         };
     }
 }
