@@ -26,5 +26,16 @@ module.exports = df.orchestrator(function* (context) {
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
 
+    const slackPayload = {
+        attachments: [
+            {
+                title: encodeURI(submission.entity.title),
+                text: 'Processing complete'
+            }
+        ]
+    };
+
+    yield context.df.callActivity('SlackNotifier', slackPayload);
+
     return context.instanceId;
 });
