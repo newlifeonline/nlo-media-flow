@@ -4,6 +4,7 @@ appInsights.setup();
 const client = appInsights.defaultClient;
 
 module.exports = async function (context) {
+    const input = context.bindings.input;
     const slackUrl = process.env['SLACK_WEBHOOK'];
 
     let options = {
