@@ -1,7 +1,20 @@
 const df = require('durable-functions');
+const emoji = require('node-emoji');
 
 module.exports = df.orchestrator(function* (context) {
     const submission = context.df.getInput();
+    
+    const startSlackNotification = {
+        attachments: [
+            {
+                title: submission.entity.title,
+                text: $`Processing... ${emoji.get('coffee')}`,
+                color: '#00bcd4'
+            }
+        ]
+    };
+
+    yield context.df.callActivity('SlackNotifier', startSlackNotification);
 
     if (submission.entity.googleVideoFileId) {
         const vimeoResult = yield context.df.callActivity('VimeoNotifier', submission.entity);
@@ -26,11 +39,14 @@ module.exports = df.orchestrator(function* (context) {
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
 
+    const p = emoji.get('raised_hands');
+
     const slackPayload = {
         attachments: [
             {
-                title: encodeURI(submission.entity.title),
-                text: 'Processing complete'
+                title: submission.entity.title,
+                text: $`Processing complete! ${p} ${p} ${p}`,
+                color: '#99cc33'
             }
         ]
     };
