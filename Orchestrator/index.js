@@ -8,7 +8,7 @@ module.exports = df.orchestrator(function* (context) {
         submission.entity.vimeoUri = vimeoResult.videoUri;
         submission.entity.vimeoId = vimeoResult.videoId;
     } else if (submission.entity.videoId) {
-        submission.entity.vimeoUri = `/videos/${submissoin.entity.videoId}`;
+        submission.entity.vimeoUri = `/videos/${submission.entity.videoId}`;
     }
     // TODO - update vimeo with title and desc
 
