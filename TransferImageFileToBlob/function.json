@@ -1,0 +1,17 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "input",
+      "type": "activityTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "images/{input}",
+      "connection": "NLO_STORAGE",
+      "direction": "out"
+    }
+  ]
+}

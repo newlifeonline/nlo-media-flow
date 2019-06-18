@@ -15,13 +15,13 @@ module.exports = df.orchestrator(function* (context) {
     yield context.df.callActivity('SaveMediaSubmission', submission);
 
     if (submission.entity.googleAudioFileId)
-        yield context.df.callActivity('TransferGoogleFileToBlob', submission.entity.googleAudioFileId);
+        yield context.df.callActivity('TransferPodcastFileToBlob', submission.entity.googleAudioFileId);
     
     if (submission.entity.googleAudioImageFileId)
-        yield context.df.callActivity('TransferGoogleFileToBlob', submission.entity.googleAudioImageFileId);
+        yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleAudioImageFileId);
     
     if (submission.entity.googleVideoImageFileId)
-        yield context.df.callActivity('TransferGoogleFileToBlob', submission.entity.googleVideoImageFileId);
+        yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleVideoImageFileId);
     
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
