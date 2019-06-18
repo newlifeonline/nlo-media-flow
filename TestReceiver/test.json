@@ -1,0 +1,17 @@
+{
+    "embeds": [{
+        "title": "**New form submission** — NLO Video",
+        "type": "rich",
+        "id": "1560880769069",
+        "formData": {
+            "title": "Mountain Monologues | Part 9 | Love Your Enemies",
+            "description": "Jesus' followers identify ourselves by loving those it makes no worldly sense to love!",
+            "event_date": "2019-06-16",
+            "vimeo_id": "342817988",
+            "tags": ["Current", "Mountain Monologue"],
+            "audio_file": ["1GVbDdWV-1mLWQdYYVvBZo6SqCGaYwZUj"],
+            "audio_image": ["1cfp0fZ1_Z3FmAo9lCgrgfImfUt4KAQ9n"],
+            "video_image": ["1V5TgvWfW5qYnRbt-pEgPrktB3eTePguP"]
+        }
+    }]
+}
