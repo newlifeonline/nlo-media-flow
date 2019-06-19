@@ -1,5 +1,4 @@
 const df = require('durable-functions');
-const emoji = require('node-emoji');
 
 module.exports = df.orchestrator(function* (context) {
     const submission = context.df.getInput();
@@ -8,7 +7,7 @@ module.exports = df.orchestrator(function* (context) {
         attachments: [
             {
                 title: submission.entity.title,
-                text: $`Processing... ${emoji.get('coffee')}`,
+                text: $`Processing... :coffee:`,
                 color: '#00bcd4'
             }
         ]
@@ -41,7 +40,7 @@ module.exports = df.orchestrator(function* (context) {
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
 
-    const p = emoji.get('raised_hands');
+    const p = ':raised_hands:';
 
     const slackPayload = {
         attachments: [
