@@ -22,6 +22,7 @@ module.exports = df.orchestrator(function* (context) {
         submission.entity.vimeoId = vimeoResult.videoId;
     } else if (submission.entity.videoId) {
         submission.entity.vimeoUri = `/videos/${submission.entity.vimeoId}`;
+        yield context.df.callActivity('VimeoDataUpdater', submission.entity);
     }
     // TODO - update vimeo with title and desc
 
