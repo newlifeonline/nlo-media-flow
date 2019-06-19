@@ -6,9 +6,11 @@ module.exports = async function (context, req) {
         const form = req.body.embeds[0];
         const id = form.id;
         const fd = FormUtil.parse(form.formData);
+        const tags = form.formData.tags || [];
         const submission = {
             id: id,
-            entity: fd
+            entity: fd,
+            tags: tags
         }
         const client = df.getClient(context);
         const instanceId = await client.startNew('TestOrchestrator',  undefined, submission);

@@ -24,7 +24,8 @@ module.exports = df.orchestrator(function* (context) {
         submission.entity.vimeoUri = `/videos/${submission.entity.vimeoId}`;
         yield context.df.callActivity('VimeoDataUpdater', submission.entity);
     }
-    // TODO - update vimeo with title and desc
+
+    yield context.df.callActivity('VimeoChannelUpdater', submission);
 
     yield context.df.callActivity('SaveMediaSubmission', submission);
 
