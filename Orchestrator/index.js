@@ -7,7 +7,7 @@ module.exports = df.orchestrator(function* (context) {
         attachments: [
             {
                 title: submission.entity.title,
-                text: $`Processing... :coffee:`,
+                text: 'Processing... :coffee:',
                 color: '#00bcd4'
             }
         ]
@@ -46,7 +46,7 @@ module.exports = df.orchestrator(function* (context) {
         attachments: [
             {
                 title: submission.entity.title,
-                text: $`Processing complete! ${p} ${p} ${p}`,
+                text: `Processing complete! ${p} ${p} ${p}`,
                 color: '#99cc33'
             }
         ]
