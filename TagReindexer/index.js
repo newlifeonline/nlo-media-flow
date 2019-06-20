@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
     const partitionKey = 'nlo';
     const submissionsTable = context.bindings.inputTable;
 
-    const masterTagList = [];
+    let masterTagList = [];
 
     const submissions = submissionsTable.map(s => {
         const tags = s.tagsCSV.split(',');
@@ -18,7 +18,7 @@ module.exports = async function (context, req) {
             `${baseBlobUrl}/podcasts/${s.audioId}.mp3` : null;
 
         tags.forEach(tag => {
-            if (masterTagList.find(t => t !== tag))
+            if (!masterTagList.find(t => t === tag))
                 masterTagList.push(tag);
         });
 
@@ -85,9 +85,7 @@ module.exports = async function (context, req) {
         context.res = {
             status: 204
         };
-        context.done();
     }).catch(err => {
         context.log.error(err);
-        //context.done();
     });  
 };
