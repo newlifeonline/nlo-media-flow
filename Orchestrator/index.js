@@ -19,7 +19,7 @@ module.exports = df.orchestrator(function* (context) {
         const vimeoResult = yield context.df.callActivity('VimeoNotifier', submission.entity);
         submission.entity.vimeoUri = vimeoResult.videoUri;
         submission.entity.vimeoId = vimeoResult.videoId;
-    } else if (submission.entity.videoId) {
+    } else if (submission.entity.vimeoId) {
         submission.entity.vimeoUri = `/videos/${submission.entity.vimeoId}`;
         yield context.df.callActivity('VimeoDataUpdater', submission.entity);
     }
