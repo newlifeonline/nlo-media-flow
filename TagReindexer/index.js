@@ -52,6 +52,16 @@ module.exports = async function (context, req) {
                 let medias = submissions.filter(s => {
                     return s.tags && s.tags.find(subTag => subTag === t);
                 });
+                medias = medias.map(m => {
+                    return {
+                        id: m.id,
+                        title: m.title,
+                        description: m.description,
+                        eventDate: m.eventDate,
+                        audioUrl: m.audioUrl,
+                        vimeoId: m.vimeoId
+                    };
+                });
                 medias = medias.sort((a,b) => {
                     let aDate = new Date(a.eventDate);
                     let bDate = new Date(b.eventDate);

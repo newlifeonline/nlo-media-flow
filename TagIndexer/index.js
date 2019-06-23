@@ -21,8 +21,7 @@ module.exports = async function (context) {
         description: submission.entity.description,
         eventDate: submission.entity.eventDate,
         audioUrl: audioUrl,
-        vimeoId: vimeoId,
-        tags: tags
+        vimeoId: vimeoId
     }
     
     const tableService = azure.createTableService(connStr);
