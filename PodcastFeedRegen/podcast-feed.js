@@ -16,19 +16,21 @@ class PodcastFeed {
     static getFeedHeader() {
         return {
             title: 'New Life Weekend Messages | Saxonburg',
-            description: 'Lead Pastor Chris Marshall',
+            author: 'New Life Christian Ministries',
+            description: 'Weekend messages from New Life Christian Ministries in Saxonburg. Ordinary people serving an EXTRAORDINARY GOD!',
             feedUrl: 'https://nlostoreprd1.blob.core.windows.net/podcasts/feed.xml',
             categories: ['Christianity'],
             pubDate: new Date(),
             language: 'en',
             copyright: 'All content copyright New Life Christian Ministries Inc.',
-            itunesAuthor: 'New Life',
+            itunesAuthor: 'New Life Christian Ministries',
             itunesSubTitle: 'This is the podcast of New Life Christian Ministries in Saxonburg, PA!',
             itunesExplicit: false,
             itunesSummary: 'Weekend messages from New Life Christian Ministries in Saxonburg. Ordinary people serving an EXTRAORDINARY GOD!',
             itunesImage: 'http://www.newlifexn.com/podcasts/iTunes-Cover-Art/images/NL18.jpg',
             itunesCategory: [{text: 'Religion & Spirituality', subcats:[{text:'Christianity'}]}],
-            itunesOwner: { name: 'Brad French', email:'webservant@newlifexn.org' }
+            itunesOwner: { name: 'Brad French', email:'webservant@newlifexn.org' },
+            itunesKeywords: ['New Life', 'New Life Christian Ministries', 'Saxonburg', 'Church', 'Bible', 'God', 'Preaching', 'Teaching', 'Bible Teaching', 'Bible Preaching', 'Chris Marshall', 'Brad French', 'Mark Lutz', 'New', 'Life', 'Jesus', 'God', 'Holy Spirit', 'Christianity', 'Christian', 'Faith']
         };
     }
 
