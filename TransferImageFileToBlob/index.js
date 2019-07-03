@@ -8,7 +8,7 @@ module.exports = async function (context) {
     const googleUrl = `https://docs.google.com/uc?id=${input}&export=download`;
 
     return await new Promise((resolve, reject) => {
-        request.get(googleUrl, (error, response, body) => {
+        request.get(googleUrl, { encoding: null },  (error, response, body) => {
             if (error) {
                 client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
                 reject(error);
