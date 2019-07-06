@@ -8,16 +8,16 @@ module.exports = async function (context, req) {
     const imageId = '';
 
     const videoResponse = await vimeoSvc.getVideoById(videoId);
-    console.dir(videoResponse, {depth: null});
     const picUri = videoResponse.metadata.connections.pictures.uri;
     const uploadLinkResponse = await vimeoSvc.getThumbnailUploadLink(picUri);
     const uploadLink = uploadLinkResponse.link;
+    const newPicUri = uploadLinkResponse.uri;
 
     const imgResponse = await vimeoSvc.getImageFromBlob(imageId);
 
     await vimeoSvc.putThumbnail(uploadLink, imgResponse);
 
-    //await vimeoSvc.patchThumbnail(picUri);
+    await vimeoSvc.patchThumbnail(newPicUri);
 
     context.res = {
         status: 204

@@ -26,10 +26,12 @@ module.exports = async function (context) {
         const uploadLinkResponse = await vimeoSvc.getThumbnailUploadLink(picUri);
 
         const uploadLink = uploadLinkResponse.link;
+        const newPicUri = uploadLinkResponse.uri;
 
         const imgResponse = await blobSvc.getImageFromBlob(imageId);
 
-        return await vimeoSvc.putThumbnail(uploadLink, imgResponse);           
+        await vimeoSvc.putThumbnail(uploadLink, imgResponse);  
+        return await vimeoSvc.patchThumbnail(newPicUri);         
     } catch (error) {
         client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
     }
