@@ -34,8 +34,17 @@ module.exports = df.orchestrator(function* (context) {
     if (submission.entity.googleAudioImageFileId)
         yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleAudioImageFileId);
     
-    if (submission.entity.googleVideoImageFileId)
+    if (submission.entity.googleVideoImageFileId) {
         yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleVideoImageFileId);
+
+        if (submission.entity.vimeoId) {
+            yield context.df.callActivity('VimeoImageUpload', 
+                {   
+                    videoId: submission.entity.vimeoId, 
+                    imageId: submission.entity.googleVideoImageFileId 
+                });
+        }
+    }
     
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
