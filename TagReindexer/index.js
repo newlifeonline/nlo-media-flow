@@ -29,7 +29,9 @@ module.exports = async function (context, req) {
             eventDate: s.eventDate,
             audioUrl: audioUrl,
             vimeoId: vimeoId,
-            tags: tags
+            tags: tags,
+            thumbUrlLarge: s.thumbUrlLarge,
+            thumbUrlSmall: s.thumbUrlSmall
         };
     });    
     
@@ -59,7 +61,9 @@ module.exports = async function (context, req) {
                         description: m.description,
                         eventDate: m.eventDate,
                         audioUrl: m.audioUrl,
-                        vimeoId: m.vimeoId
+                        vimeoId: m.vimeoId,
+                        thumbUrlLarge: m.thumbUrlLarge,
+                        thumbUrlSmall: m.thumbUrlSmall
                     };
                 });
                 medias = medias.sort((a,b) => {
