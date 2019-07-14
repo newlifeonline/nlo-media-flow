@@ -26,8 +26,6 @@ module.exports = df.orchestrator(function* (context) {
 
     yield context.df.callActivity('VimeoChannelUpdater', submission);
 
-    yield context.df.callActivity('SaveMediaSubmission', submission);
-
     if (submission.entity.googleAudioFileId)
         yield context.df.callActivity('TransferPodcastFileToBlob', submission.entity.googleAudioFileId);
     
@@ -43,9 +41,18 @@ module.exports = df.orchestrator(function* (context) {
                     videoId: submission.entity.vimeoId, 
                     imageId: submission.entity.googleVideoImageFileId 
                 });
+
+            const vimeoResponse = yield context.df.callActivity('VimeoVideoDataFetch',
+                                            {
+                                                vimeoId: submission.entity.vimeoId
+                                            });
+
+            submission.entity.thumbUrlLarge = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.filter(s => s.width === 960)[0].link : '';
+            submission.entity.thumbUrlSmall = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.filter(s => s.width === 295)[0].link : '';
         }
     }
-    
+
+    yield context.df.callActivity('SaveMediaSubmission', submission);
     yield context.df.callActivity('PodcastFeedGenerator');
     yield context.df.callActivity('TagIndexer', submission);
 
