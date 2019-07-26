@@ -28,7 +28,7 @@ class PodcastFeed {
             itunesExplicit: false,
             itunesSummary: 'Weekend messages from New Life Christian Ministries in Saxonburg. Ordinary people serving an EXTRAORDINARY GOD!',
             itunesImage: 'http://www.newlifexn.com/podcasts/iTunes-Cover-Art/images/NL18.jpg',
-            itunesCategory: [{text: 'Religion & Spirituality', subcats:[{text:'Christianity'}]}],
+            itunesCategory: [{text: 'Religion &amp; Spirituality', subcats:[{text:'Christianity'}]}],
             itunesOwner: { name: 'Brad French', email:'webservant@newlifexn.org' },
             itunesKeywords: ['New Life', 'New Life Christian Ministries', 'Saxonburg', 'Church', 'Bible', 'God', 'Preaching', 'Teaching', 'Bible Teaching', 'Bible Preaching', 'Chris Marshall', 'Brad French', 'Mark Lutz', 'New', 'Life', 'Jesus', 'God', 'Holy Spirit', 'Christianity', 'Christian', 'Faith']
         };
