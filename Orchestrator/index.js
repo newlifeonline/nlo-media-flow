@@ -36,11 +36,13 @@ module.exports = df.orchestrator(function* (context) {
         yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleVideoImageFileId);
 
         if (submission.entity.vimeoId) {
-            yield context.df.callActivity('VimeoImageUpload', 
-                {   
-                    videoId: submission.entity.vimeoId, 
-                    imageId: submission.entity.googleVideoImageFileId 
-                });
+            if (submission.entity.googleVideoImageFileId ) {
+                yield context.df.callActivity('VimeoImageUpload', 
+                    {   
+                        videoId: submission.entity.vimeoId, 
+                        imageId: submission.entity.googleVideoImageFileId 
+                    });
+            }
 
             const vimeoResponse = yield context.df.callActivity('VimeoVideoDataFetch',
                                             {
