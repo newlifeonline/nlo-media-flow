@@ -1,6 +1,6 @@
-//const appInsights = require("applicationinsights");
-//appInsights.setup();
-//const client = appInsights.defaultClient;
+const appInsights = require("applicationinsights");
+appInsights.setup();
+const client = appInsights.defaultClient;
 const azure = require('azure-storage');
 const connStr = process.env['NLO_STORAGE'];
 
@@ -41,13 +41,13 @@ module.exports = async function (context) {
 
                     blobService.createBlockFromText(blockName, blobContainer, blobName, JSON.stringify(jsonObj), (err) => {
                         if (err) {
-                            //client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
+                            client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
                             reject(err);
                         }
     
                         blobService.commitBlocks(blobContainer, blobName, { LatestBlocks: [ blockName ]}, (err) => {
                             if (err) {
-                                //client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
+                                client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
                                 reject(err);
                             } else {
                                 resolve();
