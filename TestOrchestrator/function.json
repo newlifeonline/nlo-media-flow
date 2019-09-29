@@ -5,6 +5,14 @@
       "name": "context",
       "type": "orchestrationTrigger",
       "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "inputTable",
+      "tableName": "MediaFormSubmissions",
+      "take": "100",
+      "connection": "NLO_STORAGE",
+      "direction": "in"
     }
   ]
 }
