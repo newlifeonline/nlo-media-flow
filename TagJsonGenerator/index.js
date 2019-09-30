@@ -29,8 +29,8 @@ module.exports = async function (context) {
     const promises = tags.map(t => {
         return new Promise((resolve, reject) => {
             tableService.retrieveEntity(tableName, partitionKey, t, (error, result, response) => {
-                const blobName = `${t}.json`;
-                const blockName = `${t}`;
+                const blobName = `${t.toLowerCase()}.json`;
+                const blockName = `${t.toLowerCase()}`;
                 const entity = response.body;
 
                 if (entity.media) {

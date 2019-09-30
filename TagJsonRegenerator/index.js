@@ -37,8 +37,8 @@ module.exports = async function (context, req) {
 
     const promises = entities.map(entity => {
         return new Promise((resolve, reject) => {
-            const blobName = `${entity.RowKey}.json`;
-            const blockName = `${entity.RowKey}`;
+            const blobName = `${entity.RowKey.toLowerCase()}.json`;
+            const blockName = `${entity.RowKey.toLowerCase()}`;
 
             if (entity.media) {
                 const jsonObj = {
@@ -62,7 +62,7 @@ module.exports = async function (context, req) {
                     },{
                         contentSettings: { contentType: 'application/json' }
                     },
-                     (err) => {
+                    (err) => {
                         if (err) {
                             client.trackException({
                                 exception: error,
