@@ -45,7 +45,9 @@ module.exports = async function (context) {
                             reject(err);
                         }
     
-                        blobService.commitBlocks(blobContainer, blobName, { LatestBlocks: [ blockName ]}, (err) => {
+                        blobService.commitBlocks(blobContainer, blobName, { LatestBlocks: [ blockName ]},{
+                            contentSettings: { contentType: 'application/json' }
+                        }, (err) => {
                             if (err) {
                                 client.trackException({exception: error, tagOverrides:{"ai.operation.id": context.invocationId}});
                                 reject(err);

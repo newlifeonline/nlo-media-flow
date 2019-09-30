@@ -4,7 +4,7 @@ const client = appInsights.defaultClient;
 const azure = require('azure-storage');
 const connStr = process.env['NLO_STORAGE'];
 
-module.exports = async function (context) {
+module.exports = async function (context, req) {
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';
     const blobContainer = 'static-data';
@@ -59,7 +59,10 @@ module.exports = async function (context) {
 
                     blobService.commitBlocks(blobContainer, blobName, {
                         LatestBlocks: [blockName]
-                    }, (err) => {
+                    },{
+                        contentSettings: { contentType: 'application/json' }
+                    },
+                     (err) => {
                         if (err) {
                             client.trackException({
                                 exception: error,
@@ -81,7 +84,13 @@ module.exports = async function (context) {
 
     Promise.all(promises).then(() => {
         context.log.info('Completed');
+        context.res = {
+            status: 204
+        };
     }).catch(err => {
         context.log.error(err);
+        context.res = {
+            status: 500
+        };
     });
 };
