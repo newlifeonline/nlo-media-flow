@@ -37,8 +37,9 @@ module.exports = async function (context, req) {
 
     const promises = entities.map(entity => {
         return new Promise((resolve, reject) => {
-            const blobName = `${entity.RowKey.toLowerCase()}.json`;
-            const blockName = `${entity.RowKey.toLowerCase()}`;
+            const name = entity.RowKey.toLowerCase().replace(' ', '_');
+            const blobName = `${name}.json`;
+            const blockName = `${name}`;
 
             if (entity.media) {
                 const jsonObj = {
