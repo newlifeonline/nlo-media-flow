@@ -49,8 +49,8 @@ module.exports = df.orchestrator(function* (context) {
                                                 vimeoId: submission.entity.vimeoId
                                             });
 
-            submission.entity.thumbUrlLarge = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.find(s => s.width === 960 && s.height === 540).link : '';
-            submission.entity.thumbUrlSmall = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.find(s => s.width === 295 && s.height === 166).link : '';
+            submission.entity.thumbUrlLarge = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.find(s => s.width === 960 && (s.height >= 500 && s.height <= 600)).link : '';
+            submission.entity.thumbUrlSmall = vimeoResponse.pictures ? vimeoResponse.pictures.sizes.find(s => s.width === 295 && (s.height >= 100 && s.height <= 200)).link : '';
         }
     }
 
