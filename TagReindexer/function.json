@@ -11,14 +11,6 @@
       ]
     },
     {
-      "type": "table",
-      "name": "inputTable",
-      "tableName": "MediaFormSubmissions",
-      "take": "100",
-      "connection": "NLO_STORAGE",
-      "direction": "in"
-    },
-    {
       "type": "http",
       "direction": "out",
       "name": "res"

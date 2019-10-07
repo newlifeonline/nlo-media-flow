@@ -5,9 +5,30 @@ const connStr = process.env['NLO_STORAGE'];
 const baseBlobUrl = process.env["BASE_BLOB_URL"];
 
 module.exports = async function (context, req) {
+    const sourceTableName = 'MediaFormSubmissions';
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';
-    const submissionsTable = context.bindings.inputTable;
+
+    const sourceTableService = azure.createTableService(connStr);
+    await new Promise((resolve, reject) => {
+        tableService.createTableIfNotExists(sourceTableName, (err, r, re) => {
+            if (err) {
+                context.log(err);
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+
+    const submissionsTable = await new Promise((resolve, reject) => {
+        tableService.queryEntities(sourceTableName, null, null, (error, result, response) => {
+            if (error)
+                reject(error);
+            else
+                resolve(response.body.value);
+        });
+    });
 
     let masterTagList = [];
 
