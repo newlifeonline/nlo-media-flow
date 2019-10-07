@@ -11,7 +11,7 @@ module.exports = async function (context, req) {
 
     const sourceTableService = azure.createTableService(connStr);
     await new Promise((resolve, reject) => {
-        tableService.createTableIfNotExists(sourceTableName, (err, r, re) => {
+        sourceTableService.createTableIfNotExists(sourceTableName, (err, r, re) => {
             if (err) {
                 context.log(err);
                 reject(err);
@@ -22,7 +22,7 @@ module.exports = async function (context, req) {
     });
 
     const submissionsTable = await new Promise((resolve, reject) => {
-        tableService.queryEntities(sourceTableName, null, null, (error, result, response) => {
+        sourceTableService.queryEntities(sourceTableName, null, null, (error, result, response) => {
             if (error)
                 reject(error);
             else
