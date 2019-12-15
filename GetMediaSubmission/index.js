@@ -1,9 +1,10 @@
 const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
 const azure = require('azure-storage');
 
-module.exports = async function (context) {
+module.exports = async function (context) {   
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+    
     let connStr = process.env['NLO_STORAGE'];
     const input = context.bindings.input;
 

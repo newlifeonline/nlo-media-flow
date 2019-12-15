@@ -1,9 +1,10 @@
 const request = require('request');
 const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
 
 module.exports = async function (context) {
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+    
     const input = context.bindings.input;
 
     const videoId = input.videoId;

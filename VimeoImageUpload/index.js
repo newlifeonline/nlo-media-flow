@@ -3,10 +3,10 @@ const appInsights = require("applicationinsights");
 const VimeoService = require('./VimeoService');
 const BlobService = require('./BlobService');
 
-appInsights.setup();
-const client = appInsights.defaultClient;
-
 module.exports = async function (context) {
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+
     try {
         const vimeoToken = process.env["VIMEO_TOKEN"];
         const baseBlobUrl = process.env["BASE_BLOB_URL"];

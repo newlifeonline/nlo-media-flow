@@ -1,10 +1,11 @@
 const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
 const azure = require('azure-storage');
-const connStr = process.env['NLO_STORAGE'];
 
 module.exports = async function (context) {
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+    const connStr = process.env['NLO_STORAGE'];
+
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';
     const blobContainer = 'static-data';

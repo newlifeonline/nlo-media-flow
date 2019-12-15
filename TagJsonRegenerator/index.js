@@ -1,10 +1,11 @@
 const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
 const azure = require('azure-storage');
-const connStr = process.env['NLO_STORAGE'];
 
 module.exports = async function (context, req) {
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+    const connStr = process.env['NLO_STORAGE'];
+
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';
     const blobContainer = 'static-data';
@@ -23,8 +24,6 @@ module.exports = async function (context, req) {
 
 
     const blobService = azure.createBlobService(connStr);
-
-
 
     const entities = await new Promise((resolve, reject) => {
         tableService.queryEntities(tableName, null, null, (error, result, response) => {

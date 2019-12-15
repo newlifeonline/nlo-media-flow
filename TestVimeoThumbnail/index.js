@@ -1,9 +1,10 @@
 const VimeoService = require('./VimeoService');
 const request = require('request');
-const vimeoToken = process.env["VIMEO_TOKEN"];
-const vimeoSvc = new VimeoService(request, vimeoToken);
 
 module.exports = async function (context, req) {
+    const vimeoToken = process.env["VIMEO_TOKEN"];
+    const vimeoSvc = new VimeoService(request, vimeoToken);
+
     const videoId = 0;
     const imageId = '';
 

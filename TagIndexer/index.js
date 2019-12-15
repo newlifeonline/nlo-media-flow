@@ -1,12 +1,8 @@
-const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
 const azure = require('azure-storage');
 const connStr = process.env['NLO_STORAGE'];
 const baseBlobUrl = process.env["BASE_BLOB_URL"];
 
 module.exports = async function (context) {
-    context.log('Here');
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';
     const submission = context.bindings.input;
@@ -103,6 +99,5 @@ module.exports = async function (context) {
         context.done();
     }).catch(err => {
         context.log.error(err);
-        //context.done();
     });  
 };

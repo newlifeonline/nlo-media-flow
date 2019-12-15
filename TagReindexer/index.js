@@ -1,10 +1,9 @@
-const appInsights = require("applicationinsights");
-appInsights.setup();
 const azure = require('azure-storage');
-const connStr = process.env['NLO_STORAGE'];
-const baseBlobUrl = process.env["BASE_BLOB_URL"];
 
 module.exports = async function (context, req) {
+    const connStr = process.env['NLO_STORAGE'];
+    const baseBlobUrl = process.env["BASE_BLOB_URL"];
+
     const sourceTableName = 'MediaFormSubmissions';
     const tableName = 'TagChannels';
     const partitionKey = 'nlo';

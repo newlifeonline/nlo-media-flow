@@ -1,9 +1,11 @@
 const FormProcessor = require('./form-processor');
 const appInsights = require("applicationinsights");
-appInsights.setup();
-const client = appInsights.defaultClient;
+
 
 module.exports = async function (context) {
+    appInsights.setup().start();
+    const client = appInsights.defaultClient;
+    
     let connStr = process.env['NLO_STORAGE'];
     const processor = new FormProcessor(connStr);
     const input = context.bindings.input;
