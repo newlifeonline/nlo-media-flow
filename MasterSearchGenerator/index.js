@@ -1,5 +1,17 @@
 const azure = require('azure-storage');
 
+const sortTable = (a: any, b: any): number => {
+    const leftDate = new Date(a.eventDate);
+    const rightDate = new Date(b.eventDate);
+    if (leftDate > rightDate) {
+        return -1;
+    } else if (leftDate === rightDate) {
+        return 0;
+    } else {
+        return 1;
+    }
+};
+
 module.exports = async function (context, req) {
     const connStr = process.env['NLO_STORAGE'];
     const baseBlobUrl = process.env["BASE_BLOB_URL"];
