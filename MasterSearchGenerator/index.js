@@ -1,6 +1,6 @@
 const azure = require('azure-storage');
 
-const sortTable = (a: any, b: any): number => {
+const sortTable = (a, b) => {
     const leftDate = new Date(a.eventDate);
     const rightDate = new Date(b.eventDate);
     if (leftDate > rightDate) {
