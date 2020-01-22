@@ -61,6 +61,7 @@ module.exports = df.orchestrator(function* (context) {
     
     yield context.df.callActivity('TagIndexer', submission);
     yield context.df.callActivity('TagJsonGenerator', submission);
+    yield context.df.callActivity('MasterSearchGenerator');
 
     const p = ':raised_hands:';
 
