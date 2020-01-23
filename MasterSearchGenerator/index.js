@@ -12,7 +12,7 @@ const sortTable = (a, b) => {
     }
 };
 
-module.exports = async function (context, req) {
+module.exports = async function (context) {
     const connStr = process.env['NLO_STORAGE'];
     const baseBlobUrl = process.env["BASE_BLOB_URL"];
 
@@ -96,9 +96,4 @@ module.exports = async function (context, req) {
             });
         });
     });
-
-    context.log.info('Completed');
-    context.res = {
-        status: 204
-    };
 };
