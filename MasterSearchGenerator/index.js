@@ -17,6 +17,7 @@ module.exports = async function (context) {
     const baseBlobUrl = process.env["BASE_BLOB_URL"];
 
     const sourceTableName = 'MediaFormSubmissions';
+    const blobContainer = 'static-data';
 
     const sourceTableService = azure.createTableService(connStr);
     await new Promise((resolve, reject) => {
