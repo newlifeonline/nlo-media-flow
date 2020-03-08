@@ -13,7 +13,9 @@ class FormUtil {
                             formData.video_image[0] : '';
         
         let vimeoId = formData.vimeo_id && formData.vimeo_id > 0 ? formData.vimeo_id : '';
-
+        
+        formData.tags = this.sanitizeTags(formData.tags);
+        
         return {
             title: formData.title,
             description: formData.description,
@@ -26,6 +28,16 @@ class FormUtil {
             tagsCSV: formData.tags.join(','),
             vimeoId: vimeoId
         };
+    }
+
+    static sanitizeTags(tags) {
+        if (tags) {
+            //
+            let tagsFlattened = [].concat.apply([], tags.map(_ => _.split(",")));
+            tags = tagsFlattened.map(_ => _.trim().replace('.',''));
+        }
+
+        return tags;
     }
 }
 
