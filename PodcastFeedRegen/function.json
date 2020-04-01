@@ -19,7 +19,7 @@
       "type": "table",
       "name": "inputTable",
       "tableName": "MediaFormSubmissions",
-      "take": "100",
+      "take": "500",
       "connection": "NLO_STORAGE",
       "direction": "in"
     },
