@@ -9,6 +9,7 @@ module.exports = async function (context) {
     const tags = submission.tags;
     const videoId = submission.entity.vimeoId;
     const vimeoToken = process.env["VIMEO_EDIT_TOKEN"];
+    context.log(`Updating vimeo tag channels: ${videoId}`);
 
     const channelsUrl = `https://api.vimeo.com/videos/${videoId}/available_channels`;
 

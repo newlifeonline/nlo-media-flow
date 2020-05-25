@@ -10,6 +10,8 @@ module.exports = async function (context) {
     const title = input.title;
     const desc = input.description;
     const fileId = input.googleVideoFileId;
+
+    context.log(`Initiating file upload to vimeo with id: ${fileId}`);
     
     const vimeoToken = process.env["VIMEO_TOKEN"];
     const googleUrl = `https://docs.google.com/uc?id=${fileId}&export=download`;

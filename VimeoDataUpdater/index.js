@@ -7,6 +7,7 @@ module.exports = async function (context) {
     
     const entity = context.bindings.input;  
     const vimeoToken = process.env["VIMEO_EDIT_TOKEN"];
+    context.log(`Updating vimeo data: ${entity.vimeoId}`);
 
     const url = `https://api.vimeo.com/videos/${entity.vimeoId}`;
 
