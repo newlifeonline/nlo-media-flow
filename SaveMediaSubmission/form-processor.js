@@ -17,8 +17,8 @@ class FormProcessor {
             tableService.insertOrReplaceEntity(this.entityKey, formData, (error, result, response) => {
                 if (error)
                     rej(error);
-
-                resolve();
+                else
+                    resolve();
             });
         });
     }
