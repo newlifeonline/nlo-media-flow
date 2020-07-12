@@ -36,7 +36,7 @@ class PodcastFeed {
 
     static getFeedItem(m) {
         const id = m.googleAudioFileId;
-        const eventDate = m.eventDate +  ' 08:00:00 GMT-04:00',
+        const eventDate = m.eventDate +  ' 08:00:00 GMT-04:00';
         return {
             title: m.title,
             description: m.description,
