@@ -36,13 +36,14 @@ class PodcastFeed {
 
     static getFeedItem(m) {
         const id = m.googleAudioFileId;
+        const eventDate = m.eventDate +  ' 08:00:00 GMT-04:00',
         return {
             title: m.title,
             description: m.description,
             enclosure: {
                 url: `${baseBlobUrl}/podcasts/${id}.mp3`
             },
-            date: m.eventDate,
+            date: eventDate,
             guid: id,
             itunesDuration: m.audioDuration ? m.audioDuration : 1800, // default to 30 mins
             itunesExplicit: false,
