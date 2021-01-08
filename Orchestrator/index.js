@@ -76,6 +76,7 @@ module.exports = df.orchestrator(function* (context) {
     };
 
     yield context.df.callActivity('SlackNotifier', slackPayload);
+    yield context.df.callActivity('CompletionNotifier', submission);
 
     return context.instanceId;
 });

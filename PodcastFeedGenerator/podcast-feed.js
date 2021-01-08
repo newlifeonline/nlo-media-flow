@@ -42,7 +42,7 @@ class PodcastFeed {
             enclosure: {
                 url: `${baseBlobUrl}/podcasts/${id}.mp3`
             },
-            date: m.eventDate,
+            date: new Date(m.eventDate),
             guid: id,
             itunesDuration: m.audioDuration ? m.audioDuration : 1800, // default to 30 mins
             itunesExplicit: false,

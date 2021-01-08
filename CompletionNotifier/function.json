@@ -1,0 +1,17 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "input",
+      "type": "activityTrigger",
+      "direction": "in"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "queueOutItem",
+      "queueName": "submission-events",
+      "connection": "NLO_STORAGE"
+    }
+  ]
+}
