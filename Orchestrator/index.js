@@ -27,13 +27,13 @@ module.exports = df.orchestrator(function* (context) {
     yield context.df.callActivity('VimeoChannelUpdater', submission);
 
     if (submission.entity.googleAudioFileId)
-        yield context.df.callActivity('TransferPodcastFileToBlob', submission.entity.googleAudioFileId);
+        yield context.df.callActivity('TransferPodcastFileToBlob', { fileId: submission.entity.googleAudioFileId });
     
     if (submission.entity.googleAudioImageFileId)
-        yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleAudioImageFileId);
+        yield context.df.callActivity('TransferImageFileToBlob', { fileId: submission.entity.googleAudioImageFileId });
     
     if (submission.entity.googleVideoImageFileId) {
-        yield context.df.callActivity('TransferImageFileToBlob', submission.entity.googleVideoImageFileId);
+        yield context.df.callActivity('TransferImageFileToBlob', { fileId: submission.entity.googleVideoImageFileId });
 
         if (submission.entity.vimeoId) {
             if (submission.entity.googleVideoImageFileId ) {

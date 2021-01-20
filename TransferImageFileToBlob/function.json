@@ -9,7 +9,7 @@
     {
       "name": "outputBlob",
       "type": "blob",
-      "path": "images/{input}",
+      "path": "images/{fileId}",
       "connection": "NLO_STORAGE",
       "direction": "out"
     }

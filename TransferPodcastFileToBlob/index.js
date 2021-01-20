@@ -5,7 +5,7 @@ module.exports = async function (context) {
     appInsights.setup().start();
     const client = appInsights.defaultClient;
     
-    const input = context.bindings.input;    
+    const input = context.bindings.input.fileId;    
     const googleUrl = `https://docs.google.com/uc?id=${input}&export=download`;
 
     return await new Promise((resolve, reject) => {

@@ -9,7 +9,7 @@
     {
       "name": "outputBlob",
       "type": "blob",
-      "path": "podcasts/{input}.mp3",
+      "path": "podcasts/{fileId}.mp3",
       "connection": "NLO_STORAGE",
       "direction": "out"
     }
